@@ -7,7 +7,7 @@ export const AdminSignin = () => {
         <div >
             <Navbar />
             <div className= "adminsign">
-            <AdminSigninPage />
+                <AdminSigninPage />
             </div>
         </div>
     )

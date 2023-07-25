@@ -6,10 +6,11 @@ const SignoutButton: React.FC = () => {
   const { user, handleSignout } = useAuth();
   const navigate = useNavigate()
 
-  const signout = async () => {
+  const signout = async (e: any) => {
+    e.prevendDefault()
     try {
       await handleSignout();
-        navigate("/landing")
+        navigate("/")
     } catch (error) {
       console.error("Error signing out:", error);
       // Handle error if needed
@@ -17,7 +18,7 @@ const SignoutButton: React.FC = () => {
   };
 
   return (
-    <button onClick={signout}>
+    <button onClick={(e) => signout(e)} className="btn btn-danger">
       Sign Out
     </button>
   );

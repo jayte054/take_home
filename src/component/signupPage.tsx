@@ -27,32 +27,34 @@ export const SignupPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Authentication</h1>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <p>Email:</p>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <p>Password</p>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <p>Select Role</p>
-        <select value={role} onChange={(e) => setRole(e.target.value as Role)}>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-        <p>click below to signup</p>
-        <button type="submit">Signup</button>
+    <div className=''>
+      <div className='bg-danger'>
+        <h2 className='mb-4'>Signup</h2>
+        <form onSubmit={handleSubmit} className='form-group'>
+          <label htmlFor="exampleInputEmail1" className='text-white'>Email address</label>
+          <input
+            type="email"
+            placeholder="Email"
+            className='form-control'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          /><br />
+          <label htmlFor="exampleInputEmail1" className='text-white'>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            className='form-control'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          /><br />
+          <label htmlFor="exampleInputEmail1" className='text-white'>Select Role</label>
+          <select className='form-control' value={role} onChange={(e) => setRole(e.target.value as Role)}>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select><br /><br />
+          <button type="submit" className='btn btn-primary'>Signup</button>
       </form>
+      </div>
     </div>
   );
 };

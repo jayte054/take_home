@@ -6,7 +6,6 @@ export const NavbarAuth = () => {
     return(
         <div className="nav" 
              style = {{ fontWeight: "bold",
-                        backgroundColor: "blue",
                         padding: "1rem",
                         margin: "1rem",
                         borderRadius: "1rem",
@@ -15,7 +14,11 @@ export const NavbarAuth = () => {
                         }}>
             <h1>Take Home</h1>
             <span style={{marginTop: "1rem"}}>
-            <Link to = "/adminsignin">Admin Signin</Link>
+            <Link to = "/adminsignin">
+                <h1 className="btn btn-primary">
+                    Admin Signin
+                </h1>
+            </Link>
             </span>
             <SignoutButton />
         </div>

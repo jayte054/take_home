@@ -5,15 +5,13 @@ import "./authPage.css"
 
 
 export const AuthPage = () => {
-
-    
     return(
         <div>
             <NavbarAuth />
-             <div className="auth">
-            <SignupPage />
-            <SigninPage />
-        </div>
+             <div className="d-flex flex-row justify-content-around bg-danger align-items-center" style={{height:"85vh"}}>
+                <SignupPage />
+                <SigninPage />
+            </div>
         </div>
        
     )

@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
 import './App.css';
-import { AuthProvider } from './context/authContext';
 
 import { TakeHome } from './pages/takehome';
 import { AuthPage } from './pages/authpage';
@@ -14,7 +13,7 @@ function App() {
   <React.Fragment>
       <Router>
         <Routes>
-          <Route path = "/landing" element= {<TakeHome />} />
+          <Route path = "/" element= {<TakeHome />} />
         <Route path = "/auth" element = {<AuthPage />} />
         {/* <Route element = {} /> */}
         <Route path = "/datapage" element = {<DataPage />} />

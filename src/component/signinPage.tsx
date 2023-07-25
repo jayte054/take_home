@@ -24,23 +24,24 @@ export const SigninPage: React.FC = () => {
 
   return (
     <div >
-      
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
-        <p>Email</p>
+      <h2 className="mb-4">Sign In</h2>
+      <form onSubmit={handleSubmit} className="form-group">
+      <label htmlFor="exampleInputEmail1" className='text-white'>Email address</label>
         <input type="email" 
                placeholder="Email" 
+               className="form-control"
                value={email} 
                onChange={(e) => setEmail(e.target.value)} 
                /><br />
-        <p>Password</p>
+        <label htmlFor="exampleInputEmail1" className='text-white'>Password</label>
         <input type="password" 
                placeholder="Password" 
                value={password} 
+               className="form-control"
                onChange={(e) => setPassword(e.target.value)} 
-               /><br />
-        <p>Click to signin</p> 
-        <button type="submit">Sign In</button>
+               /><br /> <br />
+
+        <button type="submit" className="btn btn-primary">Sign In</button>
       </form>
     </div>
   );
