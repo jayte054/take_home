@@ -35,7 +35,9 @@ export const AdminPage = () => {
   };
 
   const handleFetchAllData = async (e: any) => {
+    console.log("it")
     try {
+    console.log("it")
       await fetchAllData(e);
     } catch (error: any) {
       console.log(error.message);
@@ -44,14 +46,15 @@ export const AdminPage = () => {
 
   const fetchAllData = async (e: any) => {
     e.preventDefault();
-    if (user?.role === "user") {
-      throw new Error("user not admin");
-    }
+    // if (user?.role !== "admin") {
+    //   throw new Error("user not admin");
+    // }
     try {
       const response: any = await getAllData();
       if (!response || typeof response !== "object") {
         throw new Error("Data not available");
       }
+      console.log(response)
       const formattedData = Object.keys(response).map((key) => {
         const company = response[key];
         return {
@@ -63,6 +66,7 @@ export const AdminPage = () => {
         };
       });
       setAllData(formattedData);
+      console.log(formattedData)
       setCurrentPage(1);
     } catch (error:any) {
       throw new Error(error.message);
@@ -85,6 +89,7 @@ export const AdminPage = () => {
               image: user?.image || null
             };
           });
+      console.log(formattedData)
           
         setAllUsers(formattedData)
     }catch(error: any){
@@ -134,7 +139,7 @@ export const AdminPage = () => {
       <div>
         <h1>Admin Page</h1>
         <div>
-          <button type="button" onClick={handleFetchAllData}>
+          <button type="button" onClick={ handleFetchAllData}>
             Fetch All Data
           </button>
           

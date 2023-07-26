@@ -7,7 +7,7 @@ const SignoutButton: React.FC = () => {
   const navigate = useNavigate()
 
   const signout = async (e: any) => {
-    e.prevendDefault()
+    e.preventDefault()
     try {
       await handleSignout();
         navigate("/")
