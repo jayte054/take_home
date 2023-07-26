@@ -87,13 +87,13 @@ export const DataPage = () => {
         <div>
             <Navbar />
         <div className="datapage_container">
-            <h1>Take Home</h1>
-            <h2>Signup</h2>
+            <h2>Data Entry page</h2>
       <form onSubmit={handleSubmit}>
         {inputFields.map((input, index) => {
             return(
                 <div className="data container" key={index}>
-                    <label>Company Name:</label>
+                  <div className="datainput">
+                    <label className="label">Company Name:</label>
                     <input type = "text"
                            name = "company_name"
                            placeholder="company name"
@@ -102,7 +102,7 @@ export const DataPage = () => {
                            className = "datapage-cm"
                            required
                            /><br />
-                     <label>Number of Products:</label>
+                     <label className="label">Number of Products:</label>
                     <input type = "number"
                            name = "number_of_products"
                            placeholder="number of products"
@@ -111,7 +111,7 @@ export const DataPage = () => {
                            className = "datapage-np"
                            required
                            /><br />
-                           <label>Number of Users:</label>
+                      <label className="label">Number of Users:</label>
                         <input
                             type="number"
                             name="number_of_users"
@@ -121,7 +121,7 @@ export const DataPage = () => {
                             className="datapage-nu"
                             required
                         /> <br />
-                           <label>Percentage</label>
+                        <label className="label">Percentage</label>
                            <input
                             type="number"
                             placeholder="percentage"
@@ -130,7 +130,7 @@ export const DataPage = () => {
                             readOnly
                             required
                         /><br />
-                    
+                    </div>
                     <button type="button" onClick={() => addFields()}>Add set of fields</button><br />
                     <button type="button" onClick={() => removeFields(index)}>Remove set of fields</button><br />
                 </div>

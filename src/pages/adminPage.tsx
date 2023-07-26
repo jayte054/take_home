@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Navbar } from "../component/navbar";
 import { useAuth } from "../context/authContext";
 import { getAllData, getAllUsers } from "../services/dataServices";
+import "./admin.css"
 
 export const AdminPage = () => {
   const { user } = useAuth();
@@ -46,32 +47,58 @@ export const AdminPage = () => {
 
   const fetchAllData = async (e: any) => {
     e.preventDefault();
-    // if (user?.role !== "admin") {
-    //   throw new Error("user not admin");
-    // }
+    
     try {
-      const response: any = await getAllData();
-      if (!response || typeof response !== "object") {
-        throw new Error("Data not available");
+      const data = await getAllData();
+      console.log(data)
+      const extractedData: any = {};
+
+      // Iterate through the data and extract company_name and number_of_products
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          const item = data[key];
+          if (item) {
+            if (item.company_name !== undefined && item.number_of_products !== undefined) {
+              extractedData[key] = { company_name: item.company_name, number_of_products: item.number_of_products };
+            } else {
+              console.log(`Missing company_name or number_of_products for key ${key}`);
+            }
+          } else {
+            console.log(`Invalid data for key ${key}`);
+          }
+        }
       }
-      console.log(response)
-      const formattedData = Object.keys(response).map((key) => {
-        const company = response[key];
-        return {
-          id: key,
-          company_name: company?.company_name || "",
-          number_of_products: company?.number_of_products || 0,
-          number_of_users: company?.number_of_users || 0,
-          percentage: company?.percentage
-        };
-      });
-      setAllData(formattedData);
-      console.log(formattedData)
-      setCurrentPage(1);
+      
+      console.log(extractedData);
+      // for(const key in response) {
+      //   if(response.hasOwnProperty(key)) {
+      //     const {company_name} = response[key]
+      //     myResponse[key] = {company_name}
+      //   }
+      // }
+
+      // console.log(myResponse)
+      // if (!response || typeof response !== "object") {
+      //   throw new Error("Data is not in object format");
+      // }
+      // const formattedData = Object.keys(response).map((key) => {
+      //   const user = response[key];
+      //   return {
+      //     id: key,
+      //     company_name: user?.company_name || "",
+      //     number_of_users: user?.number_of_users || 0,
+      //     number_of_products: user?.number_of_products || 0,
+      //     percentage: user?.percentage || 0,
+      //   };
+      // });
+      // console.log(formattedData)
+      // setAllData(formattedData)
     } catch (error:any) {
       throw new Error(error.message);
     }
   };
+
+  
 
   const fetchAllUsers = async(e: any) => {
     e.preventDefault()
@@ -146,8 +173,8 @@ export const AdminPage = () => {
           <button>Compare</button>
         </div>
         <div>
-          <table>
-            <thead>
+          <table className="table-container">
+            <thead className= "table-header">
               <tr>
                 <th>ID</th>
                 <th>Company Name</th>
@@ -173,29 +200,29 @@ export const AdminPage = () => {
             Fetch Users
          </button>
         <div>
-            <table>
-            <thead>
+            <table className="table-container">
+            <thead className="table-header">
               <tr>
                 <th>ID</th>
                 <th>Email</th>
                 <th>Image</th>
               </tr>
             </thead>
-            </table>
             <tbody>
             {users.map((user: any, index: number) => (
             <tr key={user.id}>
               <td> {index + 1}</td>
               <td> {user.email}</td>
-              <input type="file" onChange={(e) => handleImageUpload(e, user.id)} />
+              <td><input type="file" onChange={(e) => handleImageUpload(e, user.id)} /></td>
               {/* Display user's current image */}
               {user.image && <img src={user.image} alt="User Image" />}
             </tr>
         ))}
             </tbody>
+            </table>
        
         </div>
-        <div>
+        <div className="pagination-container">
           <button onClick={prevPage}>Previous</button>
           {Array.from({ length: nPage }, (_, i) => (
             <button key={i} onClick={() => changeCurrentPage(i + 1)}>

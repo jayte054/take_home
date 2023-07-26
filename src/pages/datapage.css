@@ -1,4 +1,13 @@
 .datapage_container{
     background-color: beige;
     margin:2rem;
+
+}
+
+.label{
+    margin: .5rem;
+}
+
+.datainputs{
+    margin-bottom: 1rem;
 }

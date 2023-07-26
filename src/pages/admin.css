@@ -1,0 +1,19 @@
+.table-container{
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    width: 65%;
+    height: 100%;
+    text-align: justify;
+    border-collapse: collapse;
+}
+
+.table-container th,.table-container td  {
+    border: 1px solid black;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.pagination-container{
+    display: flex
+}
